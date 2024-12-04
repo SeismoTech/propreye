@@ -1,0 +1,60 @@
+package org.seismotech.propreye.case1;
+
+import java.util.Comparator;
+import static org.seismotech.propreye.case1.Comparisons.*;
+
+#set($lowtypes = [
+  "boolean", "byte", "short", "char", "int", "long", "float", "double"
+])
+
+public class ArrayEssences {
+
+  //----------------------------------------------------------------------
+  // size
+
+  public static int size(Object xs[]) {return xs == null ? 0 : xs.length;}
+
+  #foreach($type in $lowtypes)
+  public static int size($type xs[]) {return xs == null ? 0 : xs.length;}
+  #end
+
+
+  //----------------------------------------------------------------------
+  // min, max
+  #foreach($op in $jpp.table(
+    ["name", "iname", "better"],
+    ["min", "max", "lt"],
+    ["max", "min", "gt"]))
+
+  #macro(body $effinit)
+    for (int i = $effinit; i < end; i++)
+      if (${op.better}(xs[i],best)) best = xs[i];
+    return best;
+  #end
+
+  public static <T extends Comparable<T>> T ${op.name}(T xs[]) {
+    return ${op.name}(xs, 0, size(xs));
+  }
+
+  public static <T extends Comparable<T>> T ${op.name}(
+      T xs[], int init, int end) {
+    if (end <= init) return null;
+    T best = xs[init];
+    #body("init+1")
+  }
+
+  #foreach($type in $lowtypes)
+
+  public static $type ${op.name}($type xs[]) {
+    return ${op.name}(xs, 0, size(xs));
+  }
+
+  public static $type ${op.name}($type xs[], int init, int end) {
+    $type best = ${jpp.upcase($op.iname)}_${jpp.upcase($type)};
+    #body("init")
+  }
+
+  #end
+
+  #end
+}

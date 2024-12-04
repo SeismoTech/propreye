@@ -1,0 +1,36 @@
+package org.seismotech.propreye.case1;
+
+import java.util.Random;
+
+#set($types = $jpp.table(
+  ["name", "low"],
+  ["boolean", "boolean"],
+  ["int", "int"],
+  ["long", "long"],
+  ["float", "float"],
+  ["double", "double"],
+  ["Integer", "int"]
+))
+
+/**
+ * Poor-man Property Based Testing support.
+ */
+public class PropertyBased {
+
+  Random rnd = new Random();
+
+  #foreach($type int $types)
+
+  #set($Name = ${jpp.capitalize($type.name)})
+  #set($Low = ${jpp.capitalize($type.low)})
+
+  public $type.name gen$Name() {return rnd.next$Low();}
+
+  public ${type.name}[] gen$Name(int n) {
+    ${type.name}[] xs = new ${type.name}[n];
+    for (int i = 0; i < n; i++) xs[i] = gen$Name();
+    return xs;
+  }
+
+  #end
+}

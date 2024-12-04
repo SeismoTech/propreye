@@ -1,0 +1,35 @@
+package org.seismotech.propreye.case1;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.seismotech.propreye.case1.ArrayEssences.*;
+
+#set($types = ["int", "long", "float", "double", "Integer"])
+
+public class ArrayEssencesTest {
+
+  static final PropertyBased pb = new PropertyBased();
+
+  #foreach($type in $types)
+  #set($Type = ${jpp.capitalize($type)})
+
+  #foreach($op in $jpp.table(
+    ["name", "index"],
+    ["min", "0"],
+    ["max", "xs.length-1"]
+  ))
+
+  @Test void ${op.name}${Type}Test() {
+    ${type}[] xs = pb.gen${Type}(25);
+    $type x = ${op.name}(xs);
+    Arrays.sort(xs);
+    assertEquals(xs[${op.index}], x);
+  }
+
+  #end
+  #end
+}
