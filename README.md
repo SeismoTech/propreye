@@ -1,4 +1,7 @@
-This a preprocessing (template execution) plugin for Gradle.
+Propreye = preprocessing for Gradle.
+======================================================================
+
+**Propreye** is preprocessing (template execution) plugin for Gradle.
 
 The initial goal was to macro expand repetitive Java code dealing with
 primitive types (typically, when you implement an algorithm on `int[]` and
@@ -11,18 +14,18 @@ that expands all the templates defined in an input directory
 and stores the result in an output directory,
 preserving folder structure.
 
-This pluging predefines 2 instances of `PropreyeTask`,
+This plugin predefines 2 instances of `PropreyeTask`,
 `propreyeMain` and `propreyeTest`, 
 expanding emplates at `src/main/templates` and `src/test/templates`,
-respectivelly .
-The result is stores some where at `build/generated`;
+respectively.
+The result is stored some where at `build/generated`;
 the exact place can be find out with `propreyeMain.outputDirectory`
-and `propreyeTest.outputDirectory`.
+and `propreyeTest.outputDirectory`, respectively.
 
 Those tasks assume nothing about the template contents;
-therefore, they are not linked to other (typical) Gradle task.
-To be use them to preprocess code, they should be connected with the
-compilation task.
+therefore, they are not linked to any other Gradle task.
+To use them to preprocess code, they should be connected with the
+compilation tasks.
 For instance, to preprocess Java code, you should add the following declarations
 to your `build.gradle`:
 ```
@@ -44,13 +47,17 @@ compileJava {
 }
 
 compileTestJava {
-  dependsOn propreyeTestGround, propreyeTest
+  dependsOn propreyeTest
 }
 ```
 
-Currently, it supports Apache Velocity templates,
-although it is easy to add (and we are willing to do) support for other
-templating engines like ST4 (String Templates), Apache FreeMarker, ...
+Propreye plugin currently supports Apache Velocity templates,
+although it is easy to add support (and we are willing to do) for other
+templating engines like 
+[ST4 (String Templates)](),
+[Apache FreeMarker](https://freemarker.apache.org/),
+maybe [Rocker](https://github.com/fizzed/rocker),
+...
 
 Template engines are applied by file extension.
 Currently, the following extensions are managed:
@@ -61,5 +68,5 @@ Currently, the following extensions are managed:
 
 A file with any other extension will be ignored.
 
-Subproject [`propreye-case1`](propreye-case1/README.md)
-is a simple but realistic example.
+See subproject [`propreye-case1`](propreye-case1/README.md)
+for a simple but realistic example.

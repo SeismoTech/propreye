@@ -33,7 +33,7 @@ import org.gradle.api.logging.LogLevel;
  * All methods in {@link PreprocessingToolbox} are instance methods,
  * therefore an instance is bound in {@code Context ctx}
  * with {@code ctx.put("jpp", new PreprocessingToolbox())}.
- * Was {@link ProcessingToolbox} organized as a set of static methods,
+ * Was {@link PreprocessingToolbox} organized as a set of static methods,
  * it should be installed with
  * {@code ctx.put("jpp", PreprocessingToolbox.class)}.
  */

@@ -1,6 +1,9 @@
 plugins {
-  id 'java-gradle-plugin'
+  id 'com.gradle.plugin-publish' version '1.2.1'
 }
+
+group = 'org.seismotech'
+version = '1.0'
 
 repositories {
   mavenCentral()
@@ -11,9 +14,14 @@ dependencies {
 }
 
 gradlePlugin {
+  website = 'https://github.com/SeismoTech/propreye'
+  vcsUrl = 'https://github.com/SeismoTech/propreye'
   plugins {
     simplePlugin {
       id = 'org.seismotech.propreye'
+      displayName = 'Propreye = code preprocessing for Gradle'
+      description = 'Code preprocessing plugin for Gradle'
+      tags.set(['preprocessing', 'template', 'code generation'])
       implementationClass = 'org.seismotech.propreye.PropreyePlugin'
     }
   }
