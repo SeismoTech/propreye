@@ -54,7 +54,7 @@ compileTestJava {
 Propreye plugin currently supports Apache Velocity templates,
 although it is easy to add support (and we are willing to do) for other
 templating engines like 
-[ST4 (String Templates)](),
+[ST4 (String Templates)](https://github.com/antlr/stringtemplate4),
 [Apache FreeMarker](https://freemarker.apache.org/),
 maybe [Rocker](https://github.com/fizzed/rocker),
 ...
