@@ -2,7 +2,7 @@ package org.seismotech.propreye.case1;
 
 import java.util.Random;
 
-#set($types = $jpp.table(
+#set($types = $ppy.table(
   ["name", "low"],
   ["boolean", "boolean"],
   ["int", "int"],
@@ -21,8 +21,8 @@ public class PropertyBased {
 
   #foreach($type int $types)
 
-  #set($Name = ${jpp.capitalize($type.name)})
-  #set($Low = ${jpp.capitalize($type.low)})
+  #set($Name = ${ppy.capitalize($type.name)})
+  #set($Low = ${ppy.capitalize($type.low)})
 
   public $type.name gen$Name() {return rnd.next$Low();}
 

@@ -21,7 +21,7 @@ public class ArrayEssences {
 
   //----------------------------------------------------------------------
   // min, max
-  #foreach($op in $jpp.table(
+  #foreach($op in $ppy.table(
     ["name", "iname", "better"],
     ["min", "max", "lt"],
     ["max", "min", "gt"]))
@@ -50,7 +50,7 @@ public class ArrayEssences {
   }
 
   public static $type ${op.name}($type xs[], int init, int end) {
-    $type best = ${jpp.upcase($op.iname)}_${jpp.upcase($type)};
+    $type best = ${ppy.upcase($op.iname)}_${ppy.upcase($type)};
     #body("init")
   }
 

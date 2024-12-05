@@ -3,8 +3,8 @@ package org.seismotech.propreye.case1;
 import java.util.Comparator;
 
 #set($arithtypes = ["byte", "short", "char", "int", "long", "float", "double"])
-#set($lowtypes = $jpp.concat(["boolean"], $arithtypes))
-#set($cmpops = $jpp.table(
+#set($lowtypes = $ppy.concat(["boolean"], $arithtypes))
+#set($cmpops = $ppy.table(
   ["name", "op", "iname", "iop"],
   ["lt", "<", "gt", ">"],
   ["le", "<=", "ge", ">="]
@@ -19,10 +19,10 @@ public class Comparisons {
   public static final boolean MAX_BOOLEAN = true;
 
   #foreach($type in $arithtypes)
-    public static final $type MIN_${jpp.upcase($type)}
-      = ${jpp.boxedType($type)}.MIN_VALUE;
-    public static final $type MAX_${jpp.upcase($type)}
-      = ${jpp.boxedType($type)}.MAX_VALUE;
+    public static final $type MIN_${ppy.upcase($type)}
+      = ${ppy.java.boxedType($type)}.MIN_VALUE;
+    public static final $type MAX_${ppy.upcase($type)}
+      = ${ppy.java.boxedType($type)}.MAX_VALUE;
   #end
 
   //----------------------------------------------------------------------
@@ -30,7 +30,7 @@ public class Comparisons {
 
   #foreach($type in $lowtypes)
     public static int cmp($type a, $type b) {
-      return ${jpp.boxedType($type)}.compare(a, b);
+      return ${ppy.java.boxedType($type)}.compare(a, b);
     }
   #end
 

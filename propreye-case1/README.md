@@ -19,4 +19,3 @@ See [`ComparisonsTest`](
 src/test/templates/org/seismotech/propreye/case1/ComparisonsTest.java.vm)
 and [`ArrayEssencesTest`](
 src/test/templates/org/seismotech/propreye/case1/ArrayEssencesTest.java.vm)
-

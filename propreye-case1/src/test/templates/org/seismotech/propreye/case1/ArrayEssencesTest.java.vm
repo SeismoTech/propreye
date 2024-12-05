@@ -15,9 +15,9 @@ public class ArrayEssencesTest {
   static final PropertyBased pb = new PropertyBased();
 
   #foreach($type in $types)
-  #set($Type = ${jpp.capitalize($type)})
+  #set($Type = ${ppy.capitalize($type)})
 
-  #foreach($op in $jpp.table(
+  #foreach($op in $ppy.table(
     ["name", "index"],
     ["min", "0"],
     ["max", "xs.length-1"]
