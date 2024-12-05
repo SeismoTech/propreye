@@ -1,13 +1,13 @@
-Propreye = preprocessing for Gradle.
+Propreye: preprocessing for Gradle.
 ======================================================================
 
-**Propreye** is preprocessing (template execution) plugin for Gradle.
+**Propreye** is a preprocessing (template execution) plugin for Gradle.
 
 The initial goal was to macro expand repetitive Java code dealing with
 primitive types (typically, when you implement an algorithm on `int[]` and
 then you need to repeat the same chunk of code for `long[]`, `short[]`, ...).
 But this plugin can be used to preprocess any other programming language
-or to do any other kind of preprocessing during compilation.
+or to do any other kind of preprocessing during project building.
 
 This plugin defines a task `org.seismotech.propreye.PropreyeTask`
 that expands all the templates defined in an input directory
@@ -68,5 +68,5 @@ Currently, the following extensions are managed:
 
 A file with any other extension will be ignored.
 
-See subproject [`propreye-case1`](propreye-case1/README.md)
+See subproject [`propreye-case1`](propreye-case1/)
 for a simple but realistic example.
