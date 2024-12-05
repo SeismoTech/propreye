@@ -1,0 +1,51 @@
+plugins {
+  id "java-library"
+  id "org.seismotech.propreye"
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.0'
+  testImplementation 'org.junit.jupiter:junit-jupiter-params:5.5.0'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.0'
+}
+
+import org.seismotech.propreye.PropreyeTask
+tasks.register("propreyeTestGround", PropreyeTask) {
+  description "Preprocessing of test ground templates"
+  inputDirectory "src/test/ground-templates"
+  outputDirectory "build/generated/propreye/test/ground-templates"
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir propreyeMain.outputDirectory
+    }
+  }
+  test {
+    java {
+      srcDir propreyeTestGround.outputDirectory
+      srcDir propreyeTest.outputDirectory
+    }
+  }
+}
+
+compileJava {
+  dependsOn propreyeMain
+}
+
+compileTestJava {
+  dependsOn propreyeTestGround, propreyeTest
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events'standardOut', 'standardError'
+    exceptionFormat = 'full'
+  }
+}

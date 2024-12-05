@@ -1,0 +1,35 @@
+package org.seismotech.propreye.case1;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.seismotech.propreye.case1.Comparisons.*;
+
+#set($types = ["boolean", "int", "long", "float", "double", "Integer"])
+
+public class ComparisonsTest {
+
+  static final PropertyBased pb = new PropertyBased();
+
+  #foreach($type in $types)
+
+  #set($Type = ${ppy.capitalize($type)})
+
+  @Test void ${type}ConsistencyTest() {
+    for (int i = 0; i < 20; i++) {
+      $type a = pb.gen${Type}(), b = pb.gen${Type}();
+      int cmp = cmp(a, b);
+      assertEquals(cmp < 0, lt(a,b));
+      assertEquals(cmp <= 0, le(a,b));
+      assertEquals(cmp < 0, !ge(a,b));
+      assertEquals(cmp <= 0, !gt(a,b));
+      assertEquals(cmp >= 0, !lt(a,b));
+      assertEquals(cmp > 0, !le(a,b));
+      assertEquals(cmp >= 0, ge(a,b));
+      assertEquals(cmp > 0, gt(a,b));
+    }
+  }
+
+  #end
+}
