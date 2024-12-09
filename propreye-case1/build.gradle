@@ -1,6 +1,6 @@
 plugins {
-  id "java-library"
-  id "org.seismotech.propreye"
+  id 'java-library'
+  id 'org.seismotech.propreye'
 }
 
 repositories {
@@ -14,10 +14,10 @@ dependencies {
 }
 
 import org.seismotech.propreye.PropreyeTask
-tasks.register("propreyeTestGround", PropreyeTask) {
-  description "Preprocessing of test ground templates"
-  inputDirectory "src/test/ground-templates"
-  outputDirectory "build/generated/propreye/test/ground-templates"
+tasks.register('propreyeTestGround', PropreyeTask) {
+  description 'Preprocessing of test ground templates'
+  inputDirectory 'src/test/ground-templates'
+  outputDirectory 'build/generated/propreye/test/ground-templates'
 }
 
 sourceSets {
@@ -45,7 +45,7 @@ compileTestJava {
 test {
   useJUnitPlatform()
   testLogging {
-    events'standardOut', 'standardError'
+    events 'standardOut', 'standardError'
     exceptionFormat = 'full'
   }
 }

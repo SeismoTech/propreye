@@ -19,7 +19,7 @@ This plugin predefines 2 instances of `PropreyeTask`,
 expanding templates at `src/main/templates` and `src/test/templates`,
 respectively.
 The result is stored somewhere at `build/generated`;
-the exact place can be find out with `propreyeMain.outputDirectory`
+the exact place can be found out with `propreyeMain.outputDirectory`
 and `propreyeTest.outputDirectory`, respectively.
 
 Those tasks assume nothing about the template contents;

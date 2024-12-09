@@ -76,7 +76,7 @@ public class PropreyeTask extends SourceTask {
 
   @TaskAction
   public void action() {
-    //getProject().delete(outputDir);
+    getProject().delete(outputDir);
     invalidTemplates = new ArrayList<>();
     getSource().visit(this::preprocess);
     if (!invalidTemplates.isEmpty()) {

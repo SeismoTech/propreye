@@ -47,7 +47,7 @@ public class MultiPreprocessor implements Preprocessor {
 
   @Override
   public String name() {
-    return "Preprocessor by extension delegating to" + Arrays.stream(delegates)
+    return "Preprocessor by extension delegating to " + Arrays.stream(delegates)
       .map(Preprocessor::name).collect(Collectors.joining(", "));
   }
 
