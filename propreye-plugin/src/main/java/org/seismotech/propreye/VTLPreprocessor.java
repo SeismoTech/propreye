@@ -112,6 +112,7 @@ public class VTLPreprocessor implements Preprocessor {
       if (!errors.isEmpty()) errors.get(0).throwAsParseError();
     }
 
+    @Override
     public Object invalidGetMethod(Context context, String reference,
         Object object, String property, Info info) {
       error(
@@ -124,6 +125,7 @@ public class VTLPreprocessor implements Preprocessor {
       return null;
     }
 
+    @Override
     public Object invalidMethod(Context context, String reference,
         Object object, String method, Info info) {
       error(
@@ -134,6 +136,7 @@ public class VTLPreprocessor implements Preprocessor {
       return null;
     }
 
+    @Override
     public boolean invalidSetMethod(Context context, String leftreference,
         String rightreference, Info info) {
       //The message is not using rightreference because sometimes it has

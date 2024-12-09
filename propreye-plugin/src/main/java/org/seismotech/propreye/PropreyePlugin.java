@@ -15,6 +15,7 @@ public class PropreyePlugin implements Plugin<Project> {
   private static final String TEST_OUTPUT_DIR
     = FileUtils.portable("generated/propreye/test/templates");
 
+  @Override
   public void apply(Project project) {
     final DirectoryProperty build = project.getLayout().getBuildDirectory();
 

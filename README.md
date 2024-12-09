@@ -16,9 +16,9 @@ preserving folder structure.
 
 This plugin predefines 2 instances of `PropreyeTask`,
 `propreyeMain` and `propreyeTest`, 
-expanding emplates at `src/main/templates` and `src/test/templates`,
+expanding templates at `src/main/templates` and `src/test/templates`,
 respectively.
-The result is stored some where at `build/generated`;
+The result is stored somewhere at `build/generated`;
 the exact place can be find out with `propreyeMain.outputDirectory`
 and `propreyeTest.outputDirectory`, respectively.
 
