@@ -3,6 +3,7 @@ package org.seismotech.propreye;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -42,19 +43,21 @@ public class VTLPreprocessor implements Preprocessor {
   private static final List<String> EXTS
     = Collections.unmodifiableList(Arrays.asList("vm", "vt", "vtl"));
 
+  private final Path projectDir;
   private final Logger logger;
   private final VelocityEngine ve;
 
-  public VTLPreprocessor(Logger logger) {
+  public VTLPreprocessor(File projectDir, Logger logger) {
+    this.projectDir = projectDir.toPath();
     this.logger = logger;
     final Properties prop = new Properties();
-    // Use defaults value, except resouce loader base:
+    // Use defaults value, except for resource loader base:
     // prop.setProperty("resource.loaders", "file");
     // prop.setProperty("resource.loader.file.description", "Velocity File Resource Loader");
     // prop.setProperty("resource.loader.file.class", "org.apache.velocity.runtime.resource.loader.FileResourceLoader");
     // prop.setProperty("resource.loader.file.cache", "false");
     // prop.setProperty("resource.loader.file.modification_check_interval", "0");
-    prop.setProperty("resource.loader.file.path", "/");
+    prop.setProperty("resource.loader.file.path", projectDir.toString());
     this.ve = new VelocityEngine(prop);
     ve.init();
   }
@@ -66,7 +69,9 @@ public class VTLPreprocessor implements Preprocessor {
 
   @Override
   public void preprocess(File from, File to) throws IOException {
-    final String tempName = from.toString();
+    final String tempName = projectDir.relativize(from.toPath()).toString();
+    logger.log(LogLevel.INFO,
+        "Preprocess " + from + " [" + tempName + "] -> " + to);
     final Template temp = ve.getTemplate(tempName);
     final Context ctxt = new VelocityContext();
     ctxt.put("ppy", new PreprocessingToolbox());

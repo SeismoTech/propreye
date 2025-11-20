@@ -33,7 +33,8 @@ public class PropreyeTask extends SourceTask {
   private List<File> invalidTemplates;
 
   public PropreyeTask() {
-    this.pp = new MultiPreprocessor(new VTLPreprocessor(getLogger()));
+    this.pp = new MultiPreprocessor(
+      new VTLPreprocessor(getProject().getProjectDir(), getLogger()));
     setGroup("propreye");
     include("**/*");
   }
