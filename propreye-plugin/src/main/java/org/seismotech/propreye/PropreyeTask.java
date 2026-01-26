@@ -18,7 +18,7 @@ import org.gradle.api.tasks.SkipWhenEmpty;
 import org.gradle.api.tasks.SourceTask;
 
 @CacheableTask
-public class PropreyeTask extends SourceTask {
+public abstract class PropreyeTask extends SourceTask {
 
   private static final String DEFAULT_INPUT_DIR
     = FileUtils.portable("/src/main/templates");
