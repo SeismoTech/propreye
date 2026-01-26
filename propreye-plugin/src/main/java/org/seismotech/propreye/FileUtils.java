@@ -5,7 +5,7 @@ import java.io.File;
 public class FileUtils {
 
   public static String portable(String filename) {
-    return filename.replaceAll("/", File.separator);
+    return filename.replace("/", File.separator);
   }
 
   public static String extension(File filename) {
