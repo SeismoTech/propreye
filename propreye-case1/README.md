@@ -14,7 +14,7 @@ for all primitive arrays and array of `Comparable<T>`;
 that is done in [`ArrayEssences`](
 src/main/templates/org/seismotech/propreye/case1/ArrayEssences.java.vm).
 
-Preprocessing is also used to test those clases.
+Preprocessing is also used to test those classes.
 See [`ComparisonsTest`](
 src/test/templates/org/seismotech/propreye/case1/ComparisonsTest.java.vm)
 and [`ArrayEssencesTest`](
